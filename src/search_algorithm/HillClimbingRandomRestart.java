@@ -10,10 +10,8 @@ public class HillClimbingRandomRestart {
 	// returns the cost to reach from the passed state to goal state
 	// returns infinity if not possible to reach goal state
 	
-	public static int run() {
+	public static int run(State state) {
 		int cost = 0;
-		State state = new State();
-		state.randomlyPlaceQueens();
 		boolean upwardStepTaken;
 
 		while (!state.isGoalState()) {

@@ -33,9 +33,10 @@ public class App {
 				State state=new State();
 				state.randomlyPlaceQueens();
 				
+				state.print();
 				cost1=HillClimbing.run(state);
 				cost2=HillClimbingSteepestAscent.run(state);
-				cost3=HillClimbingRandomRestart.run();
+				cost3=HillClimbingRandomRestart.run(state);
 				cost4=SimulatedAnnealing.run(state, initialTemperature, coolingRate);
 				
 				if(cost1!=Constants.INFINITY) {
@@ -72,11 +73,12 @@ public class App {
 				else 
 					fileWriter.write("NA\t");
 				
+				fileWriter.write(state.distanceFromGoal()+"\t");
 				fileWriter.write("\n");
 			}
 			
-			fileWriter.write("Percentage of age problems solved\n");
-			fileWriter.write(((double)solved1/n)+"\t"+((double)solved2/n)+"\t"+((double)solved3/n)+"\t"+((double)solved4/n)+"\n");
+			fileWriter.write("Percentage of  problems solved\n");
+			fileWriter.write((100.0*solved1/n)+"\t"+(100.0*solved2/n)+"\t"+(100.0*solved3/n)+"\t"+(100.0*solved4/n)+"\n");
 			fileWriter.write("Average cost to solve problem\n");
 			fileWriter.write(((double)totalCost1/solved1+"\t"+((double)totalCost2/solved2)+"\t"+((double)totalCost3/solved3)+"\t"+((double)totalCost4/solved4)+"\n"));
 			fileWriter.close();

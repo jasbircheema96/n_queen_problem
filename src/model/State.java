@@ -25,6 +25,15 @@ public class State {
 		}
 	}
 	
+	public void print() {
+		for(int i=0;i<Constants.BOARD_LENGTH;i++) {
+			for(int j=0;j<Constants.BOARD_LENGTH;j++) {
+				System.out.print(this.board[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+	
 	//number of queens attacking each other
 	public int distanceFromGoal() {
 		int distance=0;
@@ -64,10 +73,18 @@ public class State {
 	}
 
 	public void randomlyPlaceQueens() {
+		this.removeAllQueens();
 		for (int col = 0; col < Constants.BOARD_LENGTH; col++) {
-			int row = (int) Math.random() * Constants.BOARD_LENGTH;
+			int row = (int) (Math.random() * Constants.BOARD_LENGTH);
+			//System.out.println(row);
 			board[row][col] = true;
 		}
+	}
+	
+	private void removeAllQueens() {
+		for(int row=0;row<Constants.BOARD_LENGTH;row++)
+			for(int col=0;col<Constants.BOARD_LENGTH;col++)
+				this.board[row][col]=false;
 	}
 
 	public boolean isGoalState() {
